@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        color: Colors.red,
+        color: Color.fromARGB(255, 116, 112, 111),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
