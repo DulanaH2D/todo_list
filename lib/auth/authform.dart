@@ -1,4 +1,4 @@
-import 'dart:js_interop';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -69,9 +69,11 @@ class _AuthFormState extends State<AuthForm> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                
 
+                 //--------------Username----------------//
                 if(!isLoginPage)
-                //--------------Username----------------//
+               
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 key: ValueKey('username'),
@@ -147,10 +149,15 @@ class _AuthFormState extends State<AuthForm> {
                   labelStyle: GoogleFonts.roboto(),
                 ),
               ),
-              SizedBox(height: 10,),
-              Container(child: ElevatedButton(onPressed: () {},child: isLoginPage? Text('Login'):Text('Sign Up'),)),
               
               SizedBox(height: 10,),
+              
+              //--------------Login / Sign Up Button----------------//
+              Container(child: ElevatedButton(onPressed: () {startAuthentication();},child: isLoginPage? Text('Login'):Text('Sign Up'),)),
+              
+              SizedBox(height: 10,),
+              
+              //--------------Switch between Login and Sign Up----------------//
               Container(child: TextButton(onPressed: () {
                 setState(() {
                   isLoginPage = !isLoginPage;
