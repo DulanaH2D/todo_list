@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_list/screens/add.dart';
 
 class Home extends StatefulWidget {
@@ -49,13 +50,25 @@ getuid() async{
              itemBuilder: (context, Index){
               return Container(
                 margin: EdgeInsets.only(bottom: 10),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Color.fromARGB(255, 63, 138, 100), ),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Color(0xff121211), ),
                 height: 90,
                 
-                child: Column(
-                  children: [
-                    Text(docs.docs[Index]['name']),
-                    //Text(docs.docs[Index]['description']),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [ 
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 20),
+                          child: Text(docs.docs[Index]['name'], style: GoogleFonts.roboto(fontSize: 18),)),
+                        //Text(docs.docs[Index]['description']),
+                      ],
+                    ),
+                    Container(child: IconButton(icon: Icon(Icons.delete, color: Color.fromARGB(255, 151, 26, 17),), onPressed: () async{
+                      await FirebaseFirestore.instance.collection('tasks').doc(uid).collection('mytasks').doc(docs.docs[Index]['time']).delete();
+                    },),)
                   ],
                 ),
               );
