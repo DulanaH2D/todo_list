@@ -35,6 +35,14 @@ class _AddTaskState extends State<AddTask> {
       'timeStamp': time,
     });
     Fluttertoast.showToast(msg: 'Data Added Successfully');
+
+    // Clear the TextFields
+    if (mounted) {
+      setState(() {
+        nameController.text = '';
+        descriptionController.text = '';
+      });
+    }
   }
 
   @override
@@ -68,6 +76,7 @@ class _AddTaskState extends State<AddTask> {
                 })),
                 onPressed: (){
                   addtaskoffirebase();
+                  
                 }, child: Text("Add Task", style: GoogleFonts.roboto(fontSize: 18),),))
           ],
         ),),
