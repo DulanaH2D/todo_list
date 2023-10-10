@@ -45,7 +45,6 @@ class _AuthFormState extends State<AuthForm> {
       await FirebaseFirestore.instance.collection('users').doc(uid).set({
         'username': username,
         'email': email,
-        'password': password,
       });
     }
   }catch(err){
