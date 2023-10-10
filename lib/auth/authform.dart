@@ -45,7 +45,7 @@ class _AuthFormState extends State<AuthForm> {
       await FirebaseFirestore.instance.collection('users').doc(uid).set({
         'username': username,
         'email': email,
-        //'password': password,
+        'password': password,
       });
     }
   }catch(err){
@@ -61,6 +61,9 @@ class _AuthFormState extends State<AuthForm> {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: ListView(children: [
+        Container(
+          margin: EdgeInsets.all(30),height: 200,
+        child: Image.asset('assets/todologo.png'),),
         Container(
           padding: EdgeInsets.only(left: 10, right: 10, top: 10),
           child: Form
@@ -153,7 +156,7 @@ class _AuthFormState extends State<AuthForm> {
               SizedBox(height: 10,),
               
               //--------------Login / Sign Up Button----------------//
-              Container(child: ElevatedButton(onPressed: () {startAuthentication();},child: isLoginPage? Text('Login'):Text('Sign Up'),)),
+              Container(child: ElevatedButton(onPressed: () {startAuthentication();},child: isLoginPage? Text('Login',style: GoogleFonts.roboto(fontSize: 16,),):Text('Sign Up',style: GoogleFonts.roboto(fontSize: 16,)),)),
               
               SizedBox(height: 10,),
               
@@ -162,7 +165,7 @@ class _AuthFormState extends State<AuthForm> {
                 setState(() {
                   isLoginPage = !isLoginPage;
                 });
-              }, child: isLoginPage? Text('Not a Member'):Text('Already a Member'),),),
+              }, child: isLoginPage? Text('Not a Member', style: GoogleFonts.roboto(fontSize: 16, color: Colors.white),):Text('Already a Member',style: GoogleFonts.roboto(fontSize: 16, color: Colors.white),),),),
 
             ],)),
         )
